@@ -1,6 +1,6 @@
 package com.example.refactoring.ex01
 
-class Play(
+data class Play(
     val name: String,
     val type: Type
 ) {

@@ -6,7 +6,7 @@ import java.util.*
 fun usd(aNumber: Double): String = NumberFormat.getCurrencyInstance(Locale.US).format(aNumber / 100)
 
 fun statement(invoice: Invoice, plays: Map<String, Play>): String {
-    return renderPlainText(createStatementData(invoice, plays))
+    return renderPlainText(StatementDataFactory(PerformanceCalculatorFactory()).create(invoice, plays))
 }
 
 fun renderPlainText(data: StatementData): String {
@@ -22,7 +22,7 @@ fun renderPlainText(data: StatementData): String {
 }
 
 fun htmlStatement(invoice: Invoice, plays: Map<String, Play>): String {
-    return renderHtml(createStatementData(invoice, plays))
+    return renderHtml(StatementDataFactory(PerformanceCalculatorFactory()).create(invoice, plays))
 }
 
 fun renderHtml(data: StatementData): String {

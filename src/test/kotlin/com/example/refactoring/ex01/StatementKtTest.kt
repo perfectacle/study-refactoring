@@ -15,7 +15,7 @@ internal class StatementKtTest {
             적립 포인트: 47.0점
         """.trimIndent()
 
-        val actual = statement(invoices()[0], plays())
+        val actual = statement(invoice(), plays())
 
         actual shouldBe expected
     }
@@ -50,36 +50,8 @@ internal class StatementKtTest {
             <p>적립 포인트: <em>47.0</em>점</p>
         """.trimIndent()
 
-        val actual = htmlStatement(invoices()[0], plays())
-
-        println(actual)
+        val actual = htmlStatement(invoice(), plays())
 
         actual shouldBe expected
     }
 }
-
-private fun invoices(): List<Invoice> = listOf(
-    Invoice(
-        customer = "BigCo",
-        performances = listOf(
-            Invoice.Performance(
-                playID = "hamlet",
-                audience = 55
-            ),
-            Invoice.Performance(
-                playID = "as-like",
-                audience = 35
-            ),
-            Invoice.Performance(
-                playID = "othello",
-                audience = 40
-            )
-        )
-    )
-)
-
-private fun plays() = mapOf(
-    "hamlet" to Play("Hamlet", Play.Type.TRAGEDY),
-    "as-like" to Play("As You Like It", Play.Type.COMEDY),
-    "othello" to Play("Othello", Play.Type.TRAGEDY)
-)
